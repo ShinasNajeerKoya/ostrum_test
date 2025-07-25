@@ -2,7 +2,13 @@
 
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:ostrum_test/data/repositories/onboarding/onboarding_repository_impl.dart';
+import 'package:ostrum_test/domain/repositories/onboarding/onboarding_repository.dart';
+import 'package:ostrum_test/domain/repositories/ostrum_comments/ostrum_comments_repository.dart';
+import 'package:ostrum_test/presentation/feature/onboarding/bloc/onboarding_bloc.dart';
 
+import '../../data/repositories/ostrum_comments/ostrum_comments_repository_impl.dart';
+import '../../presentation/feature/ostrum_comments/bloc/ostrum_comments_bloc.dart';
 import '../network/api_client.dart';
 import '../routes/route_config.dart';
 
@@ -26,10 +32,12 @@ class GetItHelper {
     // getIt.registerSingleton<OstrumService>(OstrumService(getIt<ApiClient>()));
 
     /// Repositories -- add after each feature generation
-    // getIt.registerSingleton<OstrumRepository>(OstrumRepositoryImpl(getIt<OstrumService>()));
+    getIt.registerSingleton<OnboardingRepository>(OnboardingRepositoryImpl());
+    getIt.registerSingleton<OstrumCommentsRepository>(OstrumCommentsRepositoryImpl());
 
     /// BloCs -- add after each feature generation
-    // getIt.registerSingleton<OstrumBloc>(OstrumBloc(getIt<OstrumRepository>()));
+    getIt.registerSingleton<OnboardingBloc>(OnboardingBloc(getIt<OnboardingRepository>()));
+    getIt.registerSingleton<OstrumCommentsBloc>(OstrumCommentsBloc(getIt<OstrumCommentsRepository>()));
   }
 
   void dispose() {

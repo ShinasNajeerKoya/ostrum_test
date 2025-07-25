@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:ostrum_test/generated/locale_keys.g.dart';
 
 
 import 'package:get_it/get_it.dart' show GetIt;
