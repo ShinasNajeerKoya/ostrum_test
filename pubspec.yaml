@@ -37,6 +37,10 @@ dependencies:
   hydrated_bloc: ^10.1.1
   tuple: ^2.0.2
 
+  icon_builder:
+    path: icon_builder
+
+
 
 
 
@@ -50,6 +54,7 @@ dependency_overrides:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
 
 
 
@@ -68,11 +73,26 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/languages/
     - assets/icons/
     - assets/fonts/
     - assets/test_images/
     - assets/fonts/poppins/
+
+
+
+
+
+targets:
+  $default:
+    builders:
+      icon_builder|icon_builder:
+        generate_for:
+          - lib/generated/icons_placeholder.dart
+
+
+builders:
+  icon_builder:
+    import: "package:ostrum_test/icons_placeholder.dart"
 
 
 
