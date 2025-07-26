@@ -5,12 +5,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get_it/get_it.dart' show GetIt;
-import 'package:ostrum_test/config/themes/units.dart';
 import 'package:ostrum_test/domain/models/comment/comment_model.dart';
 import 'package:ostrum_test/presentation/feature/ostrum_comments/bloc/ostrum_comments_bloc.dart';
 import 'package:ostrum_test/presentation/feature/ostrum_comments/bloc/ostrum_comments_state.dart';
 import 'package:ostrum_test/presentation/widgets/my_text.dart';
-import 'package:shimmer/shimmer.dart';
 import 'package:tuple/tuple.dart';
 
 import '../../../../config/themes/colors.dart';
@@ -21,7 +19,7 @@ import '../widgets/loading_comment_tile.dart';
 @RoutePage()
 class OstrumCommentsPage extends StatefulWidget {
   static const id = '/ostrumCommentsPage';
-  OstrumCommentsPage({super.key});
+  const OstrumCommentsPage({super.key});
 
   @override
   State<OstrumCommentsPage> createState() => _OstrumCommentsPageState();
