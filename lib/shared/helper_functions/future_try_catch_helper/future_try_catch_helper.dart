@@ -10,11 +10,7 @@ class TryCatchError {
   final StackTrace stackTrace;
   final String message;
 
-  TryCatchError({
-    required this.error,
-    required this.stackTrace,
-    required this.message,
-  });
+  TryCatchError({required this.error, required this.stackTrace, required this.message});
 }
 
 /// A generic utility to wrap any async function in a robust try-catch block.
@@ -30,14 +26,8 @@ Future<void> futureTryCatch(
 
     await fun();
   } on ApiException catch (error, stack) {
-    _handleError(
-      error: error,
-      message: error.errorMessage,
-      stack: stack,
-      logging: logging,
-      onError: onError,
-    );
-  }  on PostgrestException catch (error, stack) {
+    _handleError(error: error, message: error.errorMessage, stack: stack, logging: logging, onError: onError);
+  } on PostgrestException catch (error, stack) {
     _handleError(
       error: error,
       message: error.errorMessage ?? 'Supabase error',
@@ -46,21 +36,9 @@ Future<void> futureTryCatch(
       onError: onError,
     );
   } on DriftErrorException catch (error, stack) {
-    _handleError(
-      error: error,
-      message: error.errorMessage,
-      stack: stack,
-      logging: logging,
-      onError: onError,
-    );
+    _handleError(error: error, message: error.errorMessage, stack: stack, logging: logging, onError: onError);
   } catch (error, stack) {
-    _handleError(
-      error: error,
-      message: error.toString(),
-      stack: stack,
-      logging: logging,
-      onError: onError,
-    );
+    _handleError(error: error, message: error.toString(), stack: stack, logging: logging, onError: onError);
   } finally {
     if (onAfter != null) await onAfter();
   }
@@ -73,11 +51,7 @@ void _handleError({
   required bool logging,
   Function(TryCatchError error)? onError,
 }) {
-  final tryError = TryCatchError(
-    error: error,
-    stackTrace: stack,
-    message: message,
-  );
+  final tryError = TryCatchError(error: error, stackTrace: stack, message: message);
 
   if (onError != null) {
     onError(tryError);
@@ -86,6 +60,6 @@ void _handleError({
   if (logging) {
     debugPrint('[❌ TryCatch Error] $message');
     debugPrint(stack.toString());
-    // Optionally integrate Crashlytics or Sentry
+    // integrate Crashlytics or Sentry if needed
   }
 }

@@ -3,9 +3,6 @@ class ApiConstants {
 
   // Endpoints
   static const String comments = "$baseUrl/comments";
-  static const String getCards = "$baseUrl/cards";
-  static const String deleteCard = "$baseUrl/cards/delete";
-// Add more as needed
 }
 
 ///

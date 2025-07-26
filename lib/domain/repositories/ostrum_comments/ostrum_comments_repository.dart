@@ -1,4 +1,6 @@
+import '../../models/comment/comment_model.dart';
+
 abstract class OstrumCommentsRepository {
 /// Add your repository logic here
-  Future<void> startOstrumComments();
+  Future<List<CommentModel>> fetchComments();
 }

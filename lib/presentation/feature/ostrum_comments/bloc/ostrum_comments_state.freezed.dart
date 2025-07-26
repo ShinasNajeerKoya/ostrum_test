@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$OstrumCommentsState {
 
- bool get error; bool get isLoading;
+ bool get error; bool get isLoading; List<CommentModel> get comments;
 /// Create a copy of OstrumCommentsState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $OstrumCommentsStateCopyWith<OstrumCommentsState> get copyWith => _$OstrumCommen
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is OstrumCommentsState&&(identical(other.error, error) || other.error == error)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is OstrumCommentsState&&(identical(other.error, error) || other.error == error)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&const DeepCollectionEquality().equals(other.comments, comments));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,error,isLoading);
+int get hashCode => Object.hash(runtimeType,error,isLoading,const DeepCollectionEquality().hash(comments));
 
 @override
 String toString() {
-  return 'OstrumCommentsState(error: $error, isLoading: $isLoading)';
+  return 'OstrumCommentsState(error: $error, isLoading: $isLoading, comments: $comments)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $OstrumCommentsStateCopyWith<$Res>  {
   factory $OstrumCommentsStateCopyWith(OstrumCommentsState value, $Res Function(OstrumCommentsState) _then) = _$OstrumCommentsStateCopyWithImpl;
 @useResult
 $Res call({
- bool error, bool isLoading
+ bool error, bool isLoading, List<CommentModel> comments
 });
 
 
@@ -65,11 +65,12 @@ class _$OstrumCommentsStateCopyWithImpl<$Res>
 
 /// Create a copy of OstrumCommentsState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? error = null,Object? isLoading = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? error = null,Object? isLoading = null,Object? comments = null,}) {
   return _then(_self.copyWith(
 error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
 as bool,isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
-as bool,
+as bool,comments: null == comments ? _self.comments : comments // ignore: cast_nullable_to_non_nullable
+as List<CommentModel>,
   ));
 }
 
@@ -154,10 +155,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool error,  bool isLoading)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool error,  bool isLoading,  List<CommentModel> comments)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _OstrumCommentsState() when $default != null:
-return $default(_that.error,_that.isLoading);case _:
+return $default(_that.error,_that.isLoading,_that.comments);case _:
   return orElse();
 
 }
@@ -175,10 +176,10 @@ return $default(_that.error,_that.isLoading);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool error,  bool isLoading)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool error,  bool isLoading,  List<CommentModel> comments)  $default,) {final _that = this;
 switch (_that) {
 case _OstrumCommentsState():
-return $default(_that.error,_that.isLoading);case _:
+return $default(_that.error,_that.isLoading,_that.comments);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -195,10 +196,10 @@ return $default(_that.error,_that.isLoading);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool error,  bool isLoading)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool error,  bool isLoading,  List<CommentModel> comments)?  $default,) {final _that = this;
 switch (_that) {
 case _OstrumCommentsState() when $default != null:
-return $default(_that.error,_that.isLoading);case _:
+return $default(_that.error,_that.isLoading,_that.comments);case _:
   return null;
 
 }
@@ -210,11 +211,18 @@ return $default(_that.error,_that.isLoading);case _:
 @JsonSerializable()
 
 class _OstrumCommentsState implements OstrumCommentsState {
-  const _OstrumCommentsState({this.error = false, this.isLoading = false});
+  const _OstrumCommentsState({this.error = false, this.isLoading = false, final  List<CommentModel> comments = const []}): _comments = comments;
   factory _OstrumCommentsState.fromJson(Map<String, dynamic> json) => _$OstrumCommentsStateFromJson(json);
 
 @override@JsonKey() final  bool error;
 @override@JsonKey() final  bool isLoading;
+ final  List<CommentModel> _comments;
+@override@JsonKey() List<CommentModel> get comments {
+  if (_comments is EqualUnmodifiableListView) return _comments;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_comments);
+}
+
 
 /// Create a copy of OstrumCommentsState
 /// with the given fields replaced by the non-null parameter values.
@@ -229,16 +237,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _OstrumCommentsState&&(identical(other.error, error) || other.error == error)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _OstrumCommentsState&&(identical(other.error, error) || other.error == error)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&const DeepCollectionEquality().equals(other._comments, _comments));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,error,isLoading);
+int get hashCode => Object.hash(runtimeType,error,isLoading,const DeepCollectionEquality().hash(_comments));
 
 @override
 String toString() {
-  return 'OstrumCommentsState(error: $error, isLoading: $isLoading)';
+  return 'OstrumCommentsState(error: $error, isLoading: $isLoading, comments: $comments)';
 }
 
 
@@ -249,7 +257,7 @@ abstract mixin class _$OstrumCommentsStateCopyWith<$Res> implements $OstrumComme
   factory _$OstrumCommentsStateCopyWith(_OstrumCommentsState value, $Res Function(_OstrumCommentsState) _then) = __$OstrumCommentsStateCopyWithImpl;
 @override @useResult
 $Res call({
- bool error, bool isLoading
+ bool error, bool isLoading, List<CommentModel> comments
 });
 
 
@@ -266,11 +274,12 @@ class __$OstrumCommentsStateCopyWithImpl<$Res>
 
 /// Create a copy of OstrumCommentsState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? error = null,Object? isLoading = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? error = null,Object? isLoading = null,Object? comments = null,}) {
   return _then(_OstrumCommentsState(
 error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
 as bool,isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
-as bool,
+as bool,comments: null == comments ? _self._comments : comments // ignore: cast_nullable_to_non_nullable
+as List<CommentModel>,
   ));
 }
 

@@ -10,6 +10,11 @@ _OstrumCommentsState _$OstrumCommentsStateFromJson(Map<String, dynamic> json) =>
     _OstrumCommentsState(
       error: json['error'] as bool? ?? false,
       isLoading: json['isLoading'] as bool? ?? false,
+      comments:
+          (json['comments'] as List<dynamic>?)
+              ?.map((e) => CommentModel.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
     );
 
 Map<String, dynamic> _$OstrumCommentsStateToJson(
@@ -17,4 +22,5 @@ Map<String, dynamic> _$OstrumCommentsStateToJson(
 ) => <String, dynamic>{
   'error': instance.error,
   'isLoading': instance.isLoading,
+  'comments': instance.comments,
 };

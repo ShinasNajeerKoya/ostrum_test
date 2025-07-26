@@ -8,6 +8,7 @@ import 'package:ostrum_test/domain/repositories/ostrum_comments/ostrum_comments_
 import 'package:ostrum_test/presentation/feature/onboarding/bloc/onboarding_bloc.dart';
 
 import '../../data/repositories/ostrum_comments/ostrum_comments_repository_impl.dart';
+import '../../data/services/comment_service/comment_service.dart';
 import '../../presentation/feature/ostrum_comments/bloc/ostrum_comments_bloc.dart';
 import '../network/api_client.dart';
 import '../routes/route_config.dart';
@@ -26,14 +27,14 @@ class GetItHelper {
     );
 
     /// ApiClient using the Dio instance
-    // getIt.registerSingleton<ApiClient>(ApiClient(dio: getIt<Dio>()));
+    getIt.registerSingleton<ApiClient>(ApiClient(dio: getIt<Dio>()));
 
     /// service
-    // getIt.registerSingleton<OstrumService>(OstrumService(getIt<ApiClient>()));
+    getIt.registerSingleton<OstrumCommentService>(OstrumCommentService(getIt<ApiClient>()));
 
     /// Repositories -- add after each feature generation
     getIt.registerSingleton<OnboardingRepository>(OnboardingRepositoryImpl());
-    getIt.registerSingleton<OstrumCommentsRepository>(OstrumCommentsRepositoryImpl());
+    getIt.registerSingleton<OstrumCommentsRepository>(OstrumCommentsRepositoryImpl(getIt<OstrumCommentService>()));
 
     /// BloCs -- add after each feature generation
     getIt.registerSingleton<OnboardingBloc>(OnboardingBloc(getIt<OnboardingRepository>()));
