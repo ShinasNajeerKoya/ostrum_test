@@ -33,7 +33,7 @@ class MyText extends StatelessWidget {
       style: TextStyle(
         letterSpacing: letterSpacing,
         height: lineHeight,
-        color: fontColor ?? Color(0xff885B2B),
+        color: fontColor ?? Color(0xff573e21),
         fontSize: fontSize ?? 14.sp,
         fontWeight: fontWeight ?? FontWeight.w600,
       ),
