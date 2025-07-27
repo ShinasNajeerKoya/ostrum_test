@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -68,6 +67,7 @@ class _OstrumCommentsPageState extends State<OstrumCommentsPage> {
             }
 
             return ListView.builder(
+              padding: EdgeInsets.symmetric(vertical: 12.h),
               itemCount: comments.length,
               itemBuilder: (context, index) {
                 final comment = comments[index];
@@ -86,4 +86,3 @@ class _OstrumCommentsPageState extends State<OstrumCommentsPage> {
     );
   }
 }
-

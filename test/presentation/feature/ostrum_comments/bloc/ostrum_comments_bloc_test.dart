@@ -18,10 +18,9 @@ void main() {
   late MockHydratedStorage hydratedStorage;
 
   setUpAll(() {
-    // initialize MockHydratedStorage.
     hydratedStorage = MockHydratedStorage();
 
-    // By default, read returns null, simulating no cached state.
+    // by default, read returns null, simulating no cached state.
     when(() => hydratedStorage.read(any())).thenReturn(null);
     // write, delete, and clear will do nothing.
     when(() => hydratedStorage.write(any(), any())).thenAnswer((_) async {});

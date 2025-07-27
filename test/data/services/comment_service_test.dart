@@ -3,7 +3,6 @@ import 'package:mocktail/mocktail.dart';
 import 'package:ostrum_test/data/services/comment_service/comment_service.dart';
 import 'package:ostrum_test/core/network/api_client.dart';
 
-// Mock the ApiClient to control its network responses.
 class MockApiClient extends Mock implements ApiClient {}
 
 void main() {

@@ -11,17 +11,12 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   final appDocDir = await getApplicationDocumentsDirectory();
-  final storage = await HydratedStorage.build(
-    storageDirectory: HydratedStorageDirectory(appDocDir.path),
-  );
+  final storage = await HydratedStorage.build(storageDirectory: HydratedStorageDirectory(appDocDir.path));
   HydratedBloc.storage = storage;
-
 
   GetItHelper.init();
 
-  runApp(
-    MyApp(),
-  );
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -37,7 +32,7 @@ class MyApp extends StatelessWidget {
       splitScreenMode: true,
       builder: (context, child) {
         return MaterialApp.router(
-          title: 'Flutter Demo',
+          title: 'Ostrum Tech',
           theme: ThemeData(
             textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme).apply(fontSizeFactor: 1.sp),
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),

@@ -5,7 +5,7 @@ import '../../../../shared/mixins/safe_emit_mixin/safe_emit_mixin.dart';
 import 'ostrum_comments_state.dart';
 import 'package:ostrum_test/domain/repositories/ostrum_comments/ostrum_comments_repository.dart';
 
-class OstrumCommentsBloc extends HydratedCubit<OstrumCommentsState> with SafeEmitMixin<OstrumCommentsState> {
+class OstrumCommentsBloc extends HydratedCubit<OstrumCommentsState> with SafeHydratedEmitMixin<OstrumCommentsState> {
   OstrumCommentsBloc(this._repo) : super(const OstrumCommentsState());
 
   final OstrumCommentsRepository _repo;

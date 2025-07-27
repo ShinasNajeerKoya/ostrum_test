@@ -23,10 +23,7 @@ class OstrumCommentService {
           'Upgrade-Insecure-Requests': '1',
         };
 
-        final response = await _apiClient.get(
-          ApiConstants.comments,
-          headers: headers,
-        );
+        final response = await _apiClient.get(ApiConstants.comments, headers: headers);
 
         final dynamic raw = response['data'] ?? response;
         final List<dynamic> data = raw is List ? raw : [];

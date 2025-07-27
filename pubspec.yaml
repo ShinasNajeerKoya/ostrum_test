@@ -27,7 +27,6 @@ dependencies:
   google_fonts: ^6.2.1
   flutter_screenutil: ^5.9.3
   build: ^2.4.2
-  #  card_scanner: ^1.0.2
 
   path_provider: ^2.1.2
   path: ^1.9.0
@@ -81,9 +80,6 @@ flutter:
 
   assets:
     - assets/icons/
-    - assets/fonts/
-    - assets/test_images/
-    - assets/fonts/poppins/
 
 
 
