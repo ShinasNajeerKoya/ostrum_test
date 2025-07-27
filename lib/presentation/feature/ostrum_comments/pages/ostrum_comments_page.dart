@@ -13,6 +13,7 @@ import 'package:tuple/tuple.dart';
 
 import '../../../../config/themes/colors.dart';
 import '../../../../shared/helper_functions/debouncer_helper/debouncer_helper.dart';
+import '../widgets/comment_floating_action_button.dart';
 import '../widgets/comments_tile.dart';
 import '../widgets/loading_comment_tile.dart';
 
@@ -79,39 +80,10 @@ class _OstrumCommentsPageState extends State<OstrumCommentsPage> {
       ),
       floatingActionButton: Padding(
         padding: EdgeInsets.only(left: 16.w, right: 16.w, bottom: 12.h),
-        child: BlocSelector<OstrumCommentsBloc, OstrumCommentsState, List<CommentModel>>(
-          bloc: ostrumCommentsBloc,
-          selector: (state) => state.comments,
-          builder: (context, comments) {
-            final isEmpty = comments.isEmpty;
-
-            return SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: isEmpty ? Colors.white : AppColors.kDisableColor,
-                  foregroundColor: Colors.black,
-                  elevation: 1,
-                  padding: EdgeInsets.symmetric(vertical: 14.h),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.r)),
-                ),
-                onPressed: () {
-                  _getDebouncer.run(() {
-                    if (isEmpty) {
-                      ostrumCommentsBloc.fetchOstrumComments();
-                    } else {
-                      ostrumCommentsBloc.clearCache();
-                    }
-                  });
-                },
-                child:
-                    isEmpty ? const MyText('Get Data', fontWeight: FontWeight.w600) : const Icon(CupertinoIcons.delete),
-              ),
-            );
-          },
-        ),
+        child: CommentFloatingActionButton(ostrumCommentsBloc: ostrumCommentsBloc, getDebouncer: _getDebouncer),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }
+
