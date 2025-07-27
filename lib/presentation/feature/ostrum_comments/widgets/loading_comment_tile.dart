@@ -8,6 +8,7 @@ class LoadingCommentTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
+      key: const Key('loadingCommentTileKey'),
       padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.h),
       child: Shimmer.fromColors(
         baseColor: Colors.grey.shade300,
@@ -18,16 +19,10 @@ class LoadingCommentTile extends StatelessWidget {
           child: Row(
             children: [
               Container(
-                height: 48.h,
+                key: const Key('loadingAvatarPlaceholder'),
+                height: 160.h,
                 width: 48.w,
                 decoration: BoxDecoration(color: Colors.grey, borderRadius: BorderRadius.circular(40.r)),
-              ),
-              SizedBox(width: 12.w),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [Container(height: 160.h, width: 140.w, color: Colors.grey)],
-                ),
               ),
             ],
           ),

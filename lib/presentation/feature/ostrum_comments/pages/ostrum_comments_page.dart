@@ -41,39 +41,41 @@ class _OstrumCommentsPageState extends State<OstrumCommentsPage> {
     return Scaffold(
       backgroundColor: AppColors.kCreamBackgroundColor,
 
-      body: BlocSelector<OstrumCommentsBloc, OstrumCommentsState, Tuple3<bool, bool, List<CommentModel>>>(
-        bloc: ostrumCommentsBloc,
-        selector: (state) => Tuple3(state.isLoading, state.error, state.comments),
-        builder: (context, tuple) {
-          final isLoading = tuple.item1;
-          final hasError = tuple.item2;
-          final comments = tuple.item3;
+      body: SafeArea(
+        child: BlocSelector<OstrumCommentsBloc, OstrumCommentsState, Tuple3<bool, bool, List<CommentModel>>>(
+          bloc: ostrumCommentsBloc,
+          selector: (state) => Tuple3(state.isLoading, state.error, state.comments),
+          builder: (context, tuple) {
+            final isLoading = tuple.item1;
+            final hasError = tuple.item2;
+            final comments = tuple.item3;
 
-          if (isLoading) {
+            if (isLoading) {
+              return ListView.builder(
+                padding: EdgeInsets.symmetric(vertical: 12.h),
+                itemCount: 6,
+                itemBuilder: (context, index) => const LoadingCommentTile(),
+              );
+            }
+
+            if (hasError) {
+              return const Center(child: MyText('Something went wrong while loading comments.', fontColor: Colors.red));
+            }
+
+            if (comments.isEmpty) {
+              return const Center(child: MyText("Welcome, Please load the data"));
+            }
+
             return ListView.builder(
-              padding: EdgeInsets.symmetric(vertical: 12.h),
-              itemCount: 6,
-              itemBuilder: (context, index) => const LoadingCommentTile(),
+              itemCount: comments.length,
+              itemBuilder: (context, index) {
+                final comment = comments[index];
+
+                return CommentsTile(comment: comment);
+              },
             );
-          }
-
-          if (hasError) {
-            return const Center(child: MyText('Something went wrong while loading comments.', fontColor: Colors.red));
-          }
-
-          if (comments.isEmpty) {
-            return const Center(child: MyText("Welcome, Please load the data"));
-          }
-
-          return ListView.builder(
-            itemCount: comments.length,
-            itemBuilder: (context, index) {
-              final comment = comments[index];
-
-              return CommentsTile(comment: comment);
-            },
-          );
-        },
+          },
+        ),
       ),
       floatingActionButton: Padding(
         padding: EdgeInsets.only(left: 16.w, right: 16.w, bottom: 12.h),
@@ -96,7 +98,7 @@ class _OstrumCommentsPageState extends State<OstrumCommentsPage> {
                 onPressed: () {
                   _getDebouncer.run(() {
                     if (isEmpty) {
-                      ostrumCommentsBloc.fetchOstrum();
+                      ostrumCommentsBloc.fetchOstrumComments();
                     } else {
                       ostrumCommentsBloc.clearCache();
                     }

@@ -19,6 +19,7 @@ class CommentsTile extends StatelessWidget {
     final commentBody = comment.body ?? 'No body';
 
     return Container(
+      key: ValueKey('commentTile_${comment.id}'),
       padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
       margin: EdgeInsets.only(bottom: 12.h, left: 12.w, right: 12.w),
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.r), color: Colors.white),
@@ -30,6 +31,7 @@ class CommentsTile extends StatelessWidget {
             spacing: 12.w,
             children: [
               Container(
+                key: ValueKey('commentIdCircle_${comment.id}'),
                 height: 48.h,
                 width: 48.w,
                 decoration: BoxDecoration(
@@ -52,7 +54,7 @@ class CommentsTile extends StatelessWidget {
             ],
           ),
           verticalMargin8,
-          MyText(commentBody, fontSize: 12.sp, maxLines: 5),
+          MyText(commentBody, key: ValueKey('commentBody_${comment.id}'), fontSize: 12.sp, maxLines: 5),
         ],
       ),
     );

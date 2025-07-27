@@ -10,7 +10,7 @@ class OstrumCommentsBloc extends HydratedCubit<OstrumCommentsState> with SafeEmi
 
   final OstrumCommentsRepository _repo;
 
-  Future<void> fetchOstrum() async {
+  Future<void> fetchOstrumComments() async {
     safeEmit(state.copyWith(isLoading: true));
 
     await futureTryCatch(
@@ -24,9 +24,9 @@ class OstrumCommentsBloc extends HydratedCubit<OstrumCommentsState> with SafeEmi
     );
   }
 
-  void reset() {
-    safeEmit(const OstrumCommentsState());
-  }
+  // void reset() {
+  //   safeEmit(const OstrumCommentsState());
+  // }
 
   /// Clear cached hydrated state
   Future<void> clearCache() async {
