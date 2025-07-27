@@ -15,10 +15,16 @@ jobs:
 
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: "3.29.1" #
+          flutter-version: "3.29.1"
 
       - name: Install dependencies
         run: flutter pub get
+
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: coverage/lcov.info
 
       - name: Build APK
         run: flutter build apk --release
@@ -36,4 +42,3 @@ jobs:
           name: Release v1.0.${{ github.run_number }}
           artifacts: build/app/outputs/flutter-apk/app-release.apk
           token: ${{ secrets.GITHUB_TOKEN }}
-
