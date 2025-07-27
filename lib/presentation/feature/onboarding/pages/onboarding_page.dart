@@ -22,9 +22,18 @@ class OnboardingPage extends StatelessWidget {
   final onboardingBloc = GetIt.I<OnboardingBloc>();
 
   final List<OnboardingPageModel> pages = [
-    OnboardingPageModel(title: '', subtitle: ''),
-    OnboardingPageModel(title: 'ss', subtitle: 'sldls'),
-    OnboardingPageModel(title: 'sds', subtitle: 'fdf'),
+    OnboardingPageModel(
+      title: 'Welcome to Ostrum!',
+      subtitle: 'Fetch and explore user comments in real-time from the cloud.',
+    ),
+    OnboardingPageModel(
+      title: 'Smooth Loading Experience',
+      subtitle: 'Enjoy a beautiful shimmer effect while your data loads.',
+    ),
+    OnboardingPageModel(
+      title: 'Smart Cache Management',
+      subtitle: 'Reload or clear cached comments with a single tap.',
+    ),
   ];
 
   @override
@@ -73,12 +82,10 @@ class OnboardingPage extends StatelessWidget {
             ),
 
             // 🟢 Dot Indicator (wrapped in BlocBuilder)
-            BlocBuilder<OnboardingBloc, OnboardingState>(
+            BlocSelector<OnboardingBloc, OnboardingState, int>(
               bloc: onboardingBloc,
-              buildWhen: (prev, curr) => prev.currentTab != curr.currentTab,
-              builder: (context, state) {
-                final currentTab = state.currentTab;
-
+              selector: (state) => state.currentTab,
+              builder: (context, currentTab) {
                 return Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: List.generate(
@@ -195,7 +202,7 @@ class _SwipeToGetStartedState extends State<SwipeToGetStarted> with SingleTicker
                   boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 10)],
                 ),
                 alignment: Alignment.center,
-                child: Text('swipe to get startedddd', style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w500)),
+                child: Text('swipe to get started', style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w500)),
               ),
 
               // Swipe button

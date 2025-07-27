@@ -62,44 +62,16 @@ class OnboardingRouteArgs {
 
 /// generated route for
 /// [_i2.OstrumCommentsPage]
-class OstrumCommentsRoute extends _i3.PageRouteInfo<OstrumCommentsRouteArgs> {
-  OstrumCommentsRoute({_i4.Key? key, List<_i3.PageRouteInfo>? children})
-    : super(
-        OstrumCommentsRoute.name,
-        args: OstrumCommentsRouteArgs(key: key),
-        initialChildren: children,
-      );
+class OstrumCommentsRoute extends _i3.PageRouteInfo<void> {
+  const OstrumCommentsRoute({List<_i3.PageRouteInfo>? children})
+    : super(OstrumCommentsRoute.name, initialChildren: children);
 
   static const String name = 'OstrumCommentsRoute';
 
   static _i3.PageInfo page = _i3.PageInfo(
     name,
     builder: (data) {
-      final args = data.argsAs<OstrumCommentsRouteArgs>(
-        orElse: () => const OstrumCommentsRouteArgs(),
-      );
-      return _i2.OstrumCommentsPage(key: args.key);
+      return const _i2.OstrumCommentsPage();
     },
   );
-}
-
-class OstrumCommentsRouteArgs {
-  const OstrumCommentsRouteArgs({this.key});
-
-  final _i4.Key? key;
-
-  @override
-  String toString() {
-    return 'OstrumCommentsRouteArgs{key: $key}';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-    if (other is! OstrumCommentsRouteArgs) return false;
-    return key == other.key;
-  }
-
-  @override
-  int get hashCode => key.hashCode;
 }
